@@ -1,24 +1,15 @@
 using System;
 using UnityEngine;
 using UnityEngine.Video;
+using UnityEngine.Serialization;
 
 public class VideoControllerScript : MonoBehaviour
 {
 
-    public string controllerType;
-    public VideoPlayer videoPlayer;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
+    [SerializeField]
+    private string controllerType;
+    [SerializeField]
+    private VideoPlayer videoPlayer;
 
     // When clicked
     void OnMouseDown()
@@ -30,6 +21,7 @@ public class VideoControllerScript : MonoBehaviour
             videoPlayer.Pause();
         } else if (controllerType.Equals("Stop", StringComparison.InvariantCultureIgnoreCase)) {
             videoPlayer.Stop();
+            videoPlayer.transform.parent.gameObject.SetActive(false);
         } else {
             Debug.Log("Button clicked but no action performed - ControllerType not found.");
         }

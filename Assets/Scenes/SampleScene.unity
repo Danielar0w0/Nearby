@@ -682,11 +682,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d7468f257e726b4196b252909340d61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  debugText: {fileID: 1828601337}
-  imageNamesList:
-  - First_Test
-  gameObjectsList:
+  trackedImagesNames:
+  - CloudsQR
+  - KidQR
+  placeablePrefabs:
   - {fileID: 8836986866673568042, guid: cc3abcc2537744f09b7af89b7aa27443, type: 3}
+  - {fileID: 8836986866673568042, guid: cc3abcc2537744f09b7af89b7aa27443, type: 3}
+  videoClips:
+  - {fileID: 32900000, guid: 6f7ba77e8ab85444d9f56d77a544ac24, type: 3}
+  - {fileID: 32900000, guid: d9c83116fd3f94e0c9f7cbd6436574da, type: 3}
 --- !u!114 &1936007377
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -701,7 +705,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_SerializedLibrary: {fileID: 11400000, guid: b419b8a4bed010c4abc1ed1bdb69054d, type: 2}
   m_MaxNumberOfMovingImages: 0
-  m_TrackedImagePrefab: {fileID: 8836986866673568042, guid: cc3abcc2537744f09b7af89b7aa27443, type: 3}
+  m_TrackedImagePrefab: {fileID: 0}
 --- !u!114 &1936007378
 MonoBehaviour:
   m_ObjectHideFlags: 0
