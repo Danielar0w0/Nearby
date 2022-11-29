@@ -21,8 +21,7 @@ public class Interactable : MonoBehaviour
     private Logger logger;
 
     // Handle placed objects
-    private PlacementObject[] placedObjects;
-    private PlacementObject lastSelectedObject;
+    private GameObject lastSelectedObject;
     private int nPlacedObjects;
 
     // Handle touch input
@@ -96,10 +95,12 @@ public class Interactable : MonoBehaviour
         }
 
         // Stop selecting placed object
+        /*
         if(touch.phase == TouchPhase.Ended)
         {
             lastSelectedObject.Selected = false;
         }
+        */
 
         // Move selected object
         if(arRaycastManager.Raycast(touchPosition, hits, UnityEngine.XR.ARSubsystems.TrackableType.PlaneWithinPolygon))
@@ -108,16 +109,14 @@ public class Interactable : MonoBehaviour
 
             if (lastSelectedObject == null && nPlacedObjects < maxPlacedObjects)
             {
-                lastSelectedObject = Instantiate(placedPrefab, hitPose.position, hitPose.rotation).GetComponent<PlacementObject>();
+                // lastSelectedObject = Instantiate(placedPrefab, hitPose.position, hitPose.rotation).GetComponent<PlacementObject>();
+                lastSelectedObject = Instantiate(placedPrefab, hitPose.position, hitPose.rotation);
                 nPlacedObjects++;
             }
             else 
             {
-                if(lastSelectedObject.Selected)
-                {
-                    lastSelectedObject.transform.position = hitPose.position;
-                    lastSelectedObject.transform.rotation = hitPose.rotation;
-                }
+                lastSelectedObject.transform.position = hitPose.position;
+                lastSelectedObject.transform.rotation = hitPose.rotation;
             }
         }
     }
@@ -141,42 +140,42 @@ public class Interactable : MonoBehaviour
         }
 
         // Stop selecting placed object
+        /*
         if(firstTouch.phase == TouchPhase.Ended)
         {
             lastSelectedObject.Selected = false;
         }
+        */
 
         // Scale selected object
         if (arRaycastManager.Raycast(firstTouch.position, hits, UnityEngine.XR.ARSubsystems.TrackableType.PlaneWithinPolygon))
         {
             if (lastSelectedObject != null)
             {
-                if (lastSelectedObject.Selected)
+                // Get the distance between the two touches
+                float currentDistance = Vector2.Distance(firstTouch.position, secondTouch.position);
+
+                // If this is the first frame of the pinch, store the distance
+                if (initialDistance == 0)
                 {
-                    // Get the distance between the two touches
-                    float currentDistance = Vector2.Distance(firstTouch.position, secondTouch.position);
-
-                    // If this is the first frame of the pinch, store the distance
-                    if (initialDistance == 0)
-                    {
-                        initialDistance = currentDistance;
-                        initialScale = lastSelectedObject.transform.localScale;
-                    }
-                    else
-                    {
-                        // Calculate the scale factor
-                        float scaleFactor = currentDistance / initialDistance;
-
-                        // Scale the object
-                        lastSelectedObject.transform.localScale = initialScale * scaleFactor;
-                    }
+                    initialDistance = currentDistance;
+                    initialScale = lastSelectedObject.transform.localScale;
                 }
+                else
+                {
+                    // Calculate the scale factor
+                    float scaleFactor = currentDistance / initialDistance;
+
+                    // Scale the object
+                    lastSelectedObject.transform.localScale = initialScale * scaleFactor;
+                }
+               
             }
         }
     }
 
     // TODO: Fix Selection
-    // if (raycastHit.collider.CompareTag("PlacedObject"))
+    /*
     private void selectPlacedObject(Vector2 touchPosition)
     {
         Ray ray = arCamera.ScreenPointToRay(touchPosition);
@@ -185,6 +184,8 @@ public class Interactable : MonoBehaviour
         if(Physics.Raycast(ray, out hitObject))
         {
             lastSelectedObject = hitObject.transform.GetComponent<PlacementObject>();
+            logger.LogInfo($"Interactable: Selecting object {lastSelectedObject.name}");
+
             if(lastSelectedObject != null)
             {
                 PlacementObject[] allObjects = FindObjectsOfType<PlacementObject>();
@@ -195,6 +196,22 @@ public class Interactable : MonoBehaviour
                 }
                 
                 lastSelectedObject.Selected = true;
+            }
+        }
+    }
+    */
+
+    private void selectPlacedObject(Vector2 touchPosition) {
+        Ray ray = arCamera.ScreenPointToRay(touchPosition);
+        RaycastHit hitObject;
+
+        if(Physics.Raycast(ray, out hitObject))
+        {
+            lastSelectedObject = null;
+            if (hitObject.collider.gameObject.tag == "Spawnable")
+            {
+                lastSelectedObject = hitObject.collider.gameObject;
+                logger.LogInfo($"Interactable: Selecting object {lastSelectedObject.name}");
             }
         }
     }
