@@ -18,6 +18,7 @@ public class Interactable : MonoBehaviour
     private int maxPlacedObjects;
 
     private Camera arCamera;
+    private Logger logger;
 
     // Handle placed objects
     private PlacementObject[] placedObjects;
@@ -26,7 +27,6 @@ public class Interactable : MonoBehaviour
 
     // Handle touch input
     private Vector2 touchPosition = default;
-    // private bool onTouchHold = false;
 
     // Handle scale
     float initialDistance;
@@ -41,10 +41,13 @@ public class Interactable : MonoBehaviour
     void Awake()
     {
         arCamera = GameObject.Find("AR Camera").GetComponent<Camera>(); 
+        logger = GameObject.Find("AR Logger").GetComponent<Logger>();
         nPlacedObjects = 0;
 
         // TODO: Add a way to change the prefab
         // redButton.onClick.AddListener(() => ChangePrefabSelection("ARRed"));
+
+        logger.LogInfo("Interactable: Awake");
     }
 
     private void ChangePrefabSelection(string name)
@@ -64,6 +67,7 @@ public class Interactable : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         if (Input.touchCount == 0)
             return;
 
@@ -171,6 +175,8 @@ public class Interactable : MonoBehaviour
         }
     }
 
+    // TODO: Fix Selection
+    // if (raycastHit.collider.CompareTag("PlacedObject"))
     private void selectPlacedObject(Vector2 touchPosition)
     {
         Ray ray = arCamera.ScreenPointToRay(touchPosition);
@@ -182,6 +188,7 @@ public class Interactable : MonoBehaviour
             if(lastSelectedObject != null)
             {
                 PlacementObject[] allObjects = FindObjectsOfType<PlacementObject>();
+
                 foreach(PlacementObject placementObject in allObjects)
                 {
                     placementObject.Selected = placementObject == lastSelectedObject;

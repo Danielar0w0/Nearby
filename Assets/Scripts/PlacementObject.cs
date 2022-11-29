@@ -37,9 +37,6 @@ public class PlacementObject : MonoBehaviour
     private TextMeshPro OverlayText;
 
     [SerializeField]
-    private Canvas canvasComponent;
-
-    [SerializeField]
     private string OverlayDisplayText;
 
     public void SetOverlayText(string text)
@@ -64,10 +61,5 @@ public class PlacementObject : MonoBehaviour
     {
         OverlayText.gameObject.SetActive(IsSelected);
         OverlayText.text = OverlayDisplayText;
-    }
-
-    public void ToggleCanvas()
-    {
-        canvasComponent?.gameObject.SetActive(IsSelected);
     }
 }
