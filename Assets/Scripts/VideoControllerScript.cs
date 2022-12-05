@@ -21,6 +21,7 @@ public class VideoControllerScript : MonoBehaviour
             videoPlayer.Pause();
         } else if (controllerType.Equals("Stop", StringComparison.InvariantCultureIgnoreCase)) {
             videoPlayer.Stop();
+            // Hide AR Video GameObject 
             videoPlayer.transform.parent.gameObject.SetActive(false);
         } else {
             Debug.Log("Button clicked but no action performed - ControllerType not found.");

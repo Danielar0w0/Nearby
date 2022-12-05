@@ -1,11 +1,7 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using TMPro;
 using UnityEngine;
 using UnityEngine.Video;
-using UnityEngine.XR;
 using UnityEngine.XR.ARFoundation;
 
 public class ImageRecognition : MonoBehaviour
@@ -54,26 +50,39 @@ public class ImageRecognition : MonoBehaviour
 
         foreach (var trackedImage in eventArgs.added)
         {
+
             GameObject prefabInUse = UpdatePrefab(trackedImage);
-            UpdateVideoInPrefab(prefabInUse);
-            Debug.Log("Image added " +  trackedImage.referenceImage.name);
+            string trackedImageName = trackedImage.referenceImage.name;
+
+            GetInteractivePrefabHandler().UpdateVideoInPrefab(prefabInUse, trackedImageName);
+            GetInteractivePrefabHandler().UpdateModelInPrefab(prefabInUse, trackedImageName);
+
+            Debug.Log("OnImageAdded triggered. Image name: " +  trackedImage.referenceImage.name);
+
         }
 
         foreach (var trackedImage in eventArgs.updated)
         {
+
+            string trackedImageName = trackedImage.referenceImage.name;
+
             if (trackedImage.trackingState == UnityEngine.XR.ARSubsystems.TrackingState.Tracking)
             {
                 GameObject prefabInUse = UpdatePrefab(trackedImage);
-                UpdateVideoInPrefab(prefabInUse);
+                GetInteractivePrefabHandler().UpdateVideoInPrefab(prefabInUse, trackedImageName);
+                GetInteractivePrefabHandler().UpdateModelInPrefab(prefabInUse, trackedImageName);
             }
-            Debug.Log("Image updated " + trackedImage.referenceImage.name + "; State: " + trackedImage.trackingState);
+
+            Debug.Log("OnImageUpdated triggered. Image name: " + trackedImage.referenceImage.name);
+
         }
 
         foreach (var trackedImage in eventArgs.removed)
         {
            
-            Debug.Log("IMAGE REMOOOOOOOOOOVED");
             spawnedPrefabs[trackedImage.referenceImage.name].SetActive(false);
+            Debug.Log("OnImageRemoved triggered. Image name: " + trackedImage.referenceImage.name);
+
         }
 
     }
@@ -86,13 +95,12 @@ public class ImageRecognition : MonoBehaviour
         Quaternion rotation = trackedImage.transform.rotation;
 
         GameObject prefab = spawnedPrefabs[name];
-        
 
         prefab.transform.position = position;
         prefab.transform.rotation = rotation;
         prefab.SetActive(true);
 
-        // HideOtherPrefabs(trackedImage);
+        HideOtherPrefabs(trackedImage);
 
         return prefab;
 
@@ -115,7 +123,6 @@ public class ImageRecognition : MonoBehaviour
 
     private void UpdateVideoInPrefab(GameObject prefabInUse)
     {
-
         VideoPlayer videoPlayer = prefabInUse.GetComponentInChildren<VideoPlayer>();
         int prefabIdx = spawnedPrefabs.Values.ToList().IndexOf(prefabInUse);
 
@@ -124,6 +131,11 @@ public class ImageRecognition : MonoBehaviour
             videoPlayer.clip = videoClips[prefabIdx];
         }
 
+    }
+
+    private InteractivePrefabHandler GetInteractivePrefabHandler()
+    {
+        return GetComponentInParent<InteractivePrefabHandler>();
     }
 
 }
