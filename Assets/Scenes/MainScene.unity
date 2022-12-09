@@ -752,8 +752,8 @@ MonoBehaviour:
   - CloudsQR
   - KidQR
   interactiveModels:
-  - {fileID: 1120751809737306730, guid: 782d5e76c20a26249b22b3647b194a1d, type: 3}
-  - {fileID: 1120751809737306730, guid: 782d5e76c20a26249b22b3647b194a1d, type: 3}
+  - {fileID: 7255585205196322274, guid: 56174a171be074c2c904fa525062cc20, type: 3}
+  - {fileID: 7255585205196322274, guid: 56174a171be074c2c904fa525062cc20, type: 3}
   interactiveVideos:
   - {fileID: 32900000, guid: 6f7ba77e8ab85444d9f56d77a544ac24, type: 3}
   - {fileID: 32900000, guid: d9c83116fd3f94e0c9f7cbd6436574da, type: 3}

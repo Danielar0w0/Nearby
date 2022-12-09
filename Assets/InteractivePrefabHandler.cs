@@ -77,27 +77,17 @@ public class InteractivePrefabHandler : MonoBehaviour
         {
 
             Vector3 position = model3D.transform.position;
-            Quaternion rotation = model3D.transform.rotation;
-
-            GameObject instantiatedObject = Instantiate(modelToReplaceWith, prefabInUse.transform.Find("InteractiveModel").gameObject.transform, true);
+            GameObject instantiatedObject = Instantiate(modelToReplaceWith, prefabInUse.transform.Find("InteractiveModel").gameObject.transform);
 
             instantiatedObject.transform.position = position;
-            instantiatedObject.transform.rotation = rotation;
-            instantiatedObject.transform.localScale = new Vector3(0.001f, 0.001f, 0.001f);
-
-            Debug.Log("Model 3D position: " + model3D.transform.position);
-            Debug.Log("Instantiated Object: " + instantiatedObject.transform.position);
+            instantiatedObject.transform.rotation = Quaternion.Euler(-90, 0, 180);
+            instantiatedObject.transform.localScale = new Vector3(0.01f, 0.01f, 0.01f);
 
             instantiatedObject.SetActive(true);
             model3D.SetActive(false);
 
-            Debug.Log("Replaced Model 3D");
-
         }
 
-       
-
-        // Debug.Log("3D Model: " + model3D);
 
     }
 
