@@ -79,6 +79,8 @@ public class InteractivePrefabHandler : MonoBehaviour
             Vector3 position = model3D.transform.position;
             GameObject instantiatedObject = Instantiate(modelToReplaceWith, prefabInUse.transform.Find("InteractiveModel").gameObject.transform);
 
+            DataStore.getInstance().CurrentModel = instantiatedObject;
+
             instantiatedObject.transform.position = position;
             instantiatedObject.transform.rotation = Quaternion.Euler(-90, 0, 180);
             instantiatedObject.transform.localScale = new Vector3(0.01f, 0.01f, 0.01f);
@@ -88,27 +90,6 @@ public class InteractivePrefabHandler : MonoBehaviour
 
         }
 
-
-    }
-
-    public static void onImageAdded(GameObject gameObj)
-    {
-
-    }
-
-    public void onImageChanged()
-    {
-
-    }
-
-    public void onImageRemoved()
-    {
-
-    }
-
-    public void printLog()
-    {
-        Debug.Log("Test Log");
     }
 
    /*

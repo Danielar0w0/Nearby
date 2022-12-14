@@ -51,13 +51,24 @@ public class ImageRecognition : MonoBehaviour
         foreach (var trackedImage in eventArgs.added)
         {
 
-            GameObject prefabInUse = UpdatePrefab(trackedImage);
             string trackedImageName = trackedImage.referenceImage.name;
 
-            GetInteractivePrefabHandler().UpdateVideoInPrefab(prefabInUse, trackedImageName);
-            GetInteractivePrefabHandler().UpdateModelInPrefab(prefabInUse, trackedImageName);
+            if (trackedImageName != "Spot")
+            {
 
-            Debug.Log("OnImageAdded triggered. Image name: " +  trackedImage.referenceImage.name);
+                GameObject prefabInUse = UpdatePrefab(trackedImage);
+
+                GetInteractivePrefabHandler().UpdateVideoInPrefab(prefabInUse, trackedImageName);
+                GetInteractivePrefabHandler().UpdateModelInPrefab(prefabInUse, trackedImageName);
+                
+            } else
+            {
+
+                UpdatePrefab(trackedImage);
+
+            }
+
+            Debug.Log("OnImageAdded triggered. Image name: " + trackedImage.referenceImage.name);
 
         }
 
@@ -93,14 +104,33 @@ public class ImageRecognition : MonoBehaviour
         string name = trackedImage.referenceImage.name;
         Vector3 position = trackedImage.transform.position;
         Quaternion rotation = trackedImage.transform.rotation;
+        GameObject prefab;
 
-        GameObject prefab = spawnedPrefabs[name];
+        if (trackedImage.referenceImage.name != "Spot")
+        {
 
-        prefab.transform.position = position;
-        prefab.transform.rotation = rotation;
-        prefab.SetActive(true);
+            prefab = spawnedPrefabs[name];
 
-        HideOtherPrefabs(trackedImage);
+            prefab.transform.position = position;
+            prefab.transform.rotation = rotation;
+            prefab.SetActive(true);
+
+            // HideOtherPrefabs(trackedImage);
+
+            // Save Current Prefab
+            DataStore.getInstance().CurrentPrefab = prefab;
+
+        } else
+        {
+
+            prefab = DataStore.getInstance().CurrentModel;
+
+            prefab.transform.position = position;
+            prefab.transform.localScale = new Vector3(0.025f, 0.025f, 0.025f);
+            // prefab.transform.rotation = Quaternion.Euler(-90, 0, 180);
+            prefab.SetActive(true);
+
+        }
 
         return prefab;
 
