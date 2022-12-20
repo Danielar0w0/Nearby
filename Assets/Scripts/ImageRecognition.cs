@@ -79,9 +79,16 @@ public class ImageRecognition : MonoBehaviour
 
             if (trackedImage.trackingState == UnityEngine.XR.ARSubsystems.TrackingState.Tracking)
             {
+
                 GameObject prefabInUse = UpdatePrefab(trackedImage);
                 GetInteractivePrefabHandler().UpdateVideoInPrefab(prefabInUse, trackedImageName);
                 GetInteractivePrefabHandler().UpdateModelInPrefab(prefabInUse, trackedImageName);
+
+            } else if (trackedImage.trackingState == UnityEngine.XR.ARSubsystems.TrackingState.Limited)
+            {
+
+                
+
             }
 
             Debug.Log("OnImageUpdated triggered. Image name: " + trackedImage.referenceImage.name);

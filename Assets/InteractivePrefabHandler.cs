@@ -1,7 +1,7 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Video;
+using UnityEngine.XR.ARFoundation;
 
 public class InteractivePrefabHandler : MonoBehaviour
 {
@@ -89,6 +89,14 @@ public class InteractivePrefabHandler : MonoBehaviour
             model3D.SetActive(false);
 
         }
+
+    }
+
+    public void HideImagePrefab(ARTrackedImage trackedImage)
+    {
+
+        string trackedImageName = trackedImage.referenceImage.name;
+        int trackedImageNameIdx = trackedImages.IndexOf(trackedImageName);
 
     }
 
