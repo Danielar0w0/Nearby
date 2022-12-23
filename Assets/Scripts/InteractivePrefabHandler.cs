@@ -73,30 +73,22 @@ public class InteractivePrefabHandler : MonoBehaviour
 
         GameObject modelToReplaceWith = interactiveModels[trackedImageIdx];
 
-        if (model3D.activeSelf)
+        if (model3D != null)
         {
 
             Vector3 position = model3D.transform.position;
             GameObject instantiatedObject = Instantiate(modelToReplaceWith, prefabInUse.transform.Find("InteractiveModel").gameObject.transform);
 
-            DataStore.getInstance().CurrentModel = instantiatedObject;
+            // DataStore.getInstance().CurrentModel = instantiatedObject;
 
             instantiatedObject.transform.position = position;
             instantiatedObject.transform.rotation = Quaternion.Euler(-90, 0, 180);
             instantiatedObject.transform.localScale = new Vector3(0.01f, 0.01f, 0.01f);
 
             instantiatedObject.SetActive(true);
-            model3D.SetActive(false);
+            Destroy(model3D);
 
         }
-
-    }
-
-    public void HideImagePrefab(ARTrackedImage trackedImage)
-    {
-
-        string trackedImageName = trackedImage.referenceImage.name;
-        int trackedImageNameIdx = trackedImages.IndexOf(trackedImageName);
 
     }
 

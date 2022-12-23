@@ -13,9 +13,6 @@ public class ImageRecognition : MonoBehaviour
     [SerializeField]
     private List<GameObject> placeablePrefabs;
 
-    [SerializeField]
-    private List<VideoClip> videoClips;
-
     private Dictionary<string, GameObject> spawnedPrefabs = new Dictionary<string, GameObject>();
     private ARTrackedImageManager trackedImageManager;
 
@@ -63,12 +60,10 @@ public class ImageRecognition : MonoBehaviour
                 
             } else
             {
-
                 UpdatePrefab(trackedImage);
-
             }
 
-            Debug.Log("OnImageAdded triggered. Image name: " + trackedImage.referenceImage.name);
+            // Debug.Log("OnImageAdded triggered. Image name: " + trackedImage.referenceImage.name);
 
         }
 
@@ -81,25 +76,34 @@ public class ImageRecognition : MonoBehaviour
             {
 
                 GameObject prefabInUse = UpdatePrefab(trackedImage);
+
                 GetInteractivePrefabHandler().UpdateVideoInPrefab(prefabInUse, trackedImageName);
                 GetInteractivePrefabHandler().UpdateModelInPrefab(prefabInUse, trackedImageName);
 
             } else if (trackedImage.trackingState == UnityEngine.XR.ARSubsystems.TrackingState.Limited)
             {
-
+                if (trackedImageName != "Spot")
+                {
+                    HidePrefab(trackedImageName);
+                } else
+                {
+                    DataStore.getInstance().CurrentModel.SetActive(false);
+                }
                 
-
             }
 
-            Debug.Log("OnImageUpdated triggered. Image name: " + trackedImage.referenceImage.name);
+            // Debug.Log("OnImageUpdated triggered. Image name: " + trackedImage.referenceImage.name);
 
         }
 
         foreach (var trackedImage in eventArgs.removed)
         {
+
+            string trackedImageName = trackedImage.referenceImage.name;
+            HidePrefab(trackedImageName);
            
-            spawnedPrefabs[trackedImage.referenceImage.name].SetActive(false);
-            Debug.Log("OnImageRemoved triggered. Image name: " + trackedImage.referenceImage.name);
+            // spawnedPrefabs[trackedImage.referenceImage.name].SetActive(false);
+            // Debug.Log("OnImageRemoved triggered. Image name: " + trackedImage.referenceImage.name);
 
         }
 
@@ -122,10 +126,8 @@ public class ImageRecognition : MonoBehaviour
             prefab.transform.rotation = rotation;
             prefab.SetActive(true);
 
-            // HideOtherPrefabs(trackedImage);
-
             // Save Current Prefab
-            DataStore.getInstance().CurrentPrefab = prefab;
+            // DataStore.getInstance().CurrentPrefab = prefab;
 
         } else
         {
@@ -143,30 +145,13 @@ public class ImageRecognition : MonoBehaviour
 
     }
 
-    private void HideOtherPrefabs(ARTrackedImage trackedImage)
+    private void HidePrefab(string trackedImageName)
     {
-        foreach (GameObject go in spawnedPrefabs.Values)
-        {
-            int gameObjectIdx = spawnedPrefabs.Values.ToList().IndexOf(go);
-            string imageNameAssociatedWithGameObject = trackedImagesNames[gameObjectIdx];
 
-            if (imageNameAssociatedWithGameObject != trackedImage.referenceImage.name)
-            {
-                go.SetActive(false);
-            }
+        if (!spawnedPrefabs.ContainsKey(trackedImageName)) return;
 
-        }
-    }
-
-    private void UpdateVideoInPrefab(GameObject prefabInUse)
-    {
-        VideoPlayer videoPlayer = prefabInUse.GetComponentInChildren<VideoPlayer>();
-        int prefabIdx = spawnedPrefabs.Values.ToList().IndexOf(prefabInUse);
-
-        if (videoPlayer != null)
-        {
-            videoPlayer.clip = videoClips[prefabIdx];
-        }
+        GameObject gameObject = spawnedPrefabs[trackedImageName];
+        gameObject.SetActive(false);
 
     }
 

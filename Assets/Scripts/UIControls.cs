@@ -33,4 +33,19 @@ public class UIControls : MonoBehaviour
         currentPrefab.SetActive(false);
     }
 
+    public void onSelectModelClick()
+    {
+
+        GameObject[] objectsInScene = UnityEngine.SceneManagement.SceneManager.GetActiveScene().GetRootGameObjects();
+
+        foreach (GameObject gameObject in objectsInScene)
+        {
+            if (gameObject.name == "AR Video" && gameObject.activeSelf)
+            {
+                DataStore.getInstance().CurrentPrefab = gameObject.transform.Find("InteractiveModel").gameObject.transform.Find("3DModel").gameObject;
+            }
+        }
+
+    }
+
 }
