@@ -24,45 +24,7 @@ public class ScaleHandler : MonoBehaviour
             return;
         }
 
-        // Select placed object
-        if (firstTouch.phase == TouchPhase.Began)
-        {
-            selectPlacedObject(firstTouch.position);
-        }
-
-        // Stop selecting placed object
-        /*
-        if(firstTouch.phase == TouchPhase.Ended)
-        {
-            lastSelectedObject.Selected = false;
-        }
-        */
-
-        // Scale selected object
-        if (arRaycastManager.Raycast(firstTouch.position, hits, UnityEngine.XR.ARSubsystems.TrackableType.PlaneWithinPolygon))
-        {
-            if (lastSelectedObject != null)
-            {
-                // Get the distance between the two touches
-                float currentDistance = Vector2.Distance(firstTouch.position, secondTouch.position);
-
-                // If this is the first frame of the pinch, store the distance
-                if (initialDistance == 0)
-                {
-                    initialDistance = currentDistance;
-                    initialScale = lastSelectedObject.transform.localScale;
-                }
-                else
-                {
-                    // Calculate the scale factor
-                    float scaleFactor = currentDistance / initialDistance;
-
-                    // Scale the object
-                    lastSelectedObject.transform.localScale = initialScale * scaleFactor;
-                }
-
-            }
-        }
+        // TODO: Handle gesture.
 
     }
 
