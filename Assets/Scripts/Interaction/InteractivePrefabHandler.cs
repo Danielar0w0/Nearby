@@ -1,6 +1,4 @@
-using System;
 using System.Collections.Generic;
-using System.Runtime.ExceptionServices;
 using UnityEngine;
 using UnityEngine.Video;
 using UnityEngine.XR.ARFoundation;
@@ -144,6 +142,7 @@ public class InteractivePrefabHandler : MonoBehaviour
 
             GameObject instantiatedObject = Instantiate(modelToReplaceWith, prefabInUse.transform.Find("InteractiveModel/3DModelSelector").gameObject.transform);
 
+            instantiatedObject.name = modelToReplaceWith.name;
             instantiatedObject.transform.position = position;
             instantiatedObject.transform.rotation = Quaternion.Euler(-90, 0, 180);
             instantiatedObject.transform.localScale = new Vector3(scaleNormalization, scaleNormalization, scaleNormalization);

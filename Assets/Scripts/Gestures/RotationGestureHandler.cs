@@ -1,18 +1,13 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class RotationHandler : MonoBehaviour
+public class RotationGestureHandler : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
     // Update is called once per frame
     void Update()
     {
+
+        GameObject selectedGameObject = SelectedModelData.getInstance().SelectedModel;
 
         Touch touch;
         Quaternion rotationY;
@@ -25,7 +20,7 @@ public class RotationHandler : MonoBehaviour
             if (touch.phase == TouchPhase.Moved)
             {
                 rotationY = Quaternion.Euler(-touch.deltaPosition.y * rotateSpeedModifier, -touch.deltaPosition.x * rotateSpeedModifier, 0f);
-                transform.rotation = rotationY * transform.rotation;
+                selectedGameObject.transform.rotation = rotationY * selectedGameObject.transform.rotation;
             }
 
         }
