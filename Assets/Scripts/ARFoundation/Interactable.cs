@@ -46,7 +46,7 @@ public class Interactable : MonoBehaviour
         // TODO: Add a way to change the prefab
         // redButton.onClick.AddListener(() => ChangePrefabSelection("ARRed"));
 
-        logger.LogInfo("Interactable: Awake");
+        // logger.LogInfo("Interactable: Awake");
     }
 
     private void ChangePrefabSelection(string name)
@@ -211,7 +211,7 @@ public class Interactable : MonoBehaviour
             if (hitObject.collider.gameObject.tag == "Spawnable")
             {
                 lastSelectedObject = hitObject.collider.gameObject;
-                logger.LogInfo($"Interactable: Selecting object {lastSelectedObject.name}");
+                // logger.LogInfo($"Interactable: Selecting object {lastSelectedObject.name}");
             }
         }
     }

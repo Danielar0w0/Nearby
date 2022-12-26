@@ -30,7 +30,7 @@ public class InteractivePrefabHandler : MonoBehaviour
         foreach (string trackedImageName in trackedImagesNames) {
             
             GameObject prefabInstance = Instantiate(interactivePrefab, Vector3.zero, Quaternion.identity);
-            prefabInstance.name = trackedImageName + "_Interactive_Prefab";
+            prefabInstance.name = trackedImageName + "_Interactive";
 
             instantiatedPrefabs.Add(trackedImageName, prefabInstance);
         

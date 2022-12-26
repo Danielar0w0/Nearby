@@ -1,0 +1,70 @@
+using UnityEngine;
+
+public class EventManager : MonoBehaviour
+{
+
+    public static EventManager current;
+
+    public delegate void ModelSelected(GameObject selectedModel);
+    public static event ModelSelected OnModelSelectedEvent;
+
+    public delegate void PlayClicked();
+    public static event PlayClicked OnPlayClickedEvent;
+
+    public delegate void PauseClicked();
+    public static event PauseClicked OnPauseClickedEvent;
+
+    public delegate void SoundUpClicked();
+    public static event SoundUpClicked OnSoundUpClickedEvent;
+
+    public delegate void SoundDownClicked();
+    public static event SoundDownClicked OnSoundDownClickedEvent;
+
+    public delegate void SoundMuteClicked();
+    public static event SoundMuteClicked OnSoundMuteClickedEvent;
+
+    private void Awake()
+    {
+        current = this;
+    }
+
+    public void OnModelSelected(GameObject selectedModel)
+    {
+        if (OnModelSelectedEvent != null)
+            OnModelSelectedEvent(selectedModel);
+
+        Debug.Log("Model Selected Event - Producer.");
+
+    }
+
+    public void OnPlayClicked()
+    {
+        if (OnPlayClickedEvent != null)
+            OnPlayClickedEvent();
+    }
+
+    public void OnPauseClicked()
+    {
+        if (OnPauseClickedEvent != null)
+            OnPauseClickedEvent();
+    }
+
+    public void OnSoundUpClicked()
+    {
+        if (OnSoundUpClickedEvent != null)
+            OnSoundUpClickedEvent();
+    }
+
+    public void OnSoundDownClicked()
+    {
+        if (OnSoundDownClickedEvent != null)
+            OnSoundDownClickedEvent();
+    }
+
+    public void OnSoundMuteClicked()
+    {
+        if (OnSoundMuteClickedEvent != null)
+            OnSoundMuteClickedEvent();
+    }
+
+}

@@ -22,21 +22,26 @@ public class DataService : MonoBehaviour
 
     }
 
-    public void UpdateCurrentModel()
+    public void UpdateCurrentModel(bool isInteractive)
     {
 
-        GameObject spotInstance = Instantiate(dataStore.CurrentModel);
-        GameObject modelPreviewInstance = Instantiate(dataStore.CurrentModel);
+        if (isInteractive)
+        {
+            GameObject spotInstance = Instantiate(dataStore.CurrentModel);
+            GameObject modelPreviewInstance = Instantiate(dataStore.CurrentModel);
 
-        spotInstance.name = dataStore.CurrentModel.name;
-        modelPreviewInstance.name = dataStore.CurrentModel.name;
+            spotInstance.name = dataStore.CurrentModel.name;
+            modelPreviewInstance.name = dataStore.CurrentModel.name;
 
-        spotInstance.SetActive(false);
-        modelPreviewInstance.SetActive(false);
+            spotInstance.SetActive(false);
+            modelPreviewInstance.SetActive(false);
+
+            spotData.SpotInteractableModel = spotInstance;
+            modelPreviewData.PreviewModel = modelPreviewInstance;
+
+        }
 
         selectedModelData.SelectedModel = dataStore.CurrentModel;
-        spotData.SpotInteractableModel = spotInstance;
-        modelPreviewData.PreviewModel = modelPreviewInstance;
 
     }
 

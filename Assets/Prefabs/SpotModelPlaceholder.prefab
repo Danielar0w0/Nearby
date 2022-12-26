@@ -148,7 +148,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2695321965485686124}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -208,7 +208,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba7c88ee99822d94d96af6e0183c5837, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectedModelPanel: {fileID: 0}
+  isInteractiveModel: 1
+  selectRoot: 0
+  selectChild: 1
+  childIndex: 0
 --- !u!1 &6051566680482985197
 GameObject:
   m_ObjectHideFlags: 0
