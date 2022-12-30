@@ -59,6 +59,7 @@ public class ImageRecognition : MonoBehaviour
 
                     GetInteractivePrefabHandler().UpdateVideoInPrefab(trackedImageName);
                     GetInteractivePrefabHandler().UpdateModelInPrefab(trackedImageName);
+                    GetInteractivePrefabHandler().UpdateTextInPrefab(trackedImageName);
 
                 }
             }

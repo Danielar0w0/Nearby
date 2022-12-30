@@ -1912,7 +1912,12 @@ MonoBehaviour:
   interactiveVideos:
   - {fileID: 32900000, guid: 6f7ba77e8ab85444d9f56d77a544ac24, type: 3}
   - {fileID: 32900000, guid: b315324664c0de7408edf219a7fdd4c7, type: 3}
-  interactiveText: []
+  interactiveText:
+  - Hey this is text 1
+  - Oculus Quest 2, the most amazing glasses LCD panel - FullHD resolution - 90 Hz
+    refresh rate - Internal cameras - Snapdragon XR2 processor - 256GB storage capacity
+    - WiFi and Bluetooth - Touch controls Cinematic sound, amazing visual quality,
+    hardware state-of-the-art and adaptive controls
 --- !u!114 &1936007381
 MonoBehaviour:
   m_ObjectHideFlags: 0

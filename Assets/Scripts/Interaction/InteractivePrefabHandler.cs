@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Video;
 using UnityEngine.XR.ARFoundation;
@@ -86,6 +87,35 @@ public class InteractivePrefabHandler : MonoBehaviour
         }
 
         videoPlayer.clip = interactiveVideos[trackedImageIdx];
+
+    }
+
+    public void UpdateTextInPrefab(string trackedImageName)
+    {
+
+        GameObject prefabInUse = instantiatedPrefabs[trackedImageName];
+        TextMeshPro textMesh = prefabInUse.GetComponentInChildren<TextMeshPro>();
+        int trackedImageIdx = GetIndexByImageName(trackedImageName);
+
+        if (trackedImageIdx == -1)
+        {
+            Debug.LogWarning("Unable to find Tracked Image Name. (InteractivePrefabHandler.UpdateTextInPrefab)");
+            return;
+        }
+
+        if (textMesh == null)
+        {
+            Debug.LogWarning("Unable to find Text Mesh. (InteractivePrefabHandler.UpdateTextInPrefab)");
+            return;
+        }
+
+        if (interactiveVideos.Count <= trackedImageIdx)
+        {
+            Debug.LogWarning("Not enought videos in List! (InteractivePrefabHandler.UpdateTextInPrefab)");
+            return;
+        }
+
+        textMesh.text = interactiveText[trackedImageIdx];
 
     }
 
