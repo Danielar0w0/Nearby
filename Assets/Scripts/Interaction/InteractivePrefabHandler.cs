@@ -37,6 +37,8 @@ public class InteractivePrefabHandler : MonoBehaviour
         
         }
 
+        interactivePrefab.SetActive(false);
+
     }
 
     public void CenterInteractivePrefab(ARTrackedImage trackedImage)
@@ -168,7 +170,7 @@ public class InteractivePrefabHandler : MonoBehaviour
         {
 
             Vector3 position = model3D.transform.position;
-            float scaleNormalization = model3D.transform.localScale.x / 8;
+            float scaleNormalization = model3D.transform.localScale.x;
 
             GameObject instantiatedObject = Instantiate(modelToReplaceWith, prefabInUse.transform.Find("InteractiveModel/3DModelSelector").gameObject.transform);
 

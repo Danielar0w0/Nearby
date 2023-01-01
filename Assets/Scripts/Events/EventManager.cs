@@ -23,6 +23,12 @@ public class EventManager : MonoBehaviour
     public delegate void SoundMuteClicked();
     public static event SoundMuteClicked OnSoundMuteClickedEvent;
 
+    public delegate void VideoForwardClicked();
+    public static event VideoForwardClicked OnVideoForwardClickedEvent;
+
+    public delegate void VideoBackwardClicked();
+    public static event VideoBackwardClicked OnVideoBackwardClickedEvent;
+
     private void Awake()
     {
         current = this;
@@ -65,6 +71,18 @@ public class EventManager : MonoBehaviour
     {
         if (OnSoundMuteClickedEvent != null)
             OnSoundMuteClickedEvent();
+    }
+
+    public void OnVideoForwardClicked()
+    {
+        if (OnVideoForwardClickedEvent != null)
+            OnVideoForwardClickedEvent();
+    }
+
+    public void OnVideoBackwardClicked()
+    {
+        if (OnVideoBackwardClickedEvent != null)
+            OnVideoBackwardClickedEvent();
     }
 
 }

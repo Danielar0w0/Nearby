@@ -28,4 +28,14 @@ public class UIControls : MonoBehaviour
         EventManager.current.OnSoundMuteClicked();
     }
 
+    public void onVideoForwardClicked()
+    {
+        EventManager.current.OnVideoForwardClicked();
+    }
+
+    public void onVideoBackwardClicked()
+    {
+        EventManager.current.OnVideoBackwardClicked();
+    }
+
 }

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028305, g: 0.22571313, b: 0.3069213, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1904,20 +1904,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactivePrefab: {fileID: 8836986866673568042, guid: cc3abcc2537744f09b7af89b7aa27443, type: 3}
   trackedImagesNames:
-  - CloudsQR
-  - KidQR
+  - OculusRiftQR
+  - HTCVibeQR
+  - SamsungQR
   interactiveModels:
-  - {fileID: 7255585205196322274, guid: 56174a171be074c2c904fa525062cc20, type: 3}
-  - {fileID: 7255585205196322274, guid: 56174a171be074c2c904fa525062cc20, type: 3}
+  - {fileID: 8695704282462007843, guid: 0f92d6007f41d4d268eccf2a91f577e3, type: 3}
+  - {fileID: 8701476457588376050, guid: f0c61ca212128488ab36a5c6f8d066d3, type: 3}
+  - {fileID: 4579133877815786333, guid: 076921b73bd5a4d83a4d059cbae0e5a5, type: 3}
   interactiveVideos:
-  - {fileID: 32900000, guid: 6f7ba77e8ab85444d9f56d77a544ac24, type: 3}
-  - {fileID: 32900000, guid: b315324664c0de7408edf219a7fdd4c7, type: 3}
+  - {fileID: 32900000, guid: 9fb98bdb444c84ce584e11524a4fb211, type: 3}
+  - {fileID: 32900000, guid: 071d0fc762d6049caa3893377b805786, type: 3}
+  - {fileID: 32900000, guid: 84c090ec55bc24d65ba4b2adbc01aaa8, type: 3}
   interactiveText:
-  - Hey this is text 1
-  - Oculus Quest 2, the most amazing glasses LCD panel - FullHD resolution - 90 Hz
-    refresh rate - Internal cameras - Snapdragon XR2 processor - 256GB storage capacity
-    - WiFi and Bluetooth - Touch controls Cinematic sound, amazing visual quality,
-    hardware state-of-the-art and adaptive controls
+  - Oculus Rift
+  - HTC Vive
+  - Samsung Gear VR
 --- !u!114 &1936007381
 MonoBehaviour:
   m_ObjectHideFlags: 0

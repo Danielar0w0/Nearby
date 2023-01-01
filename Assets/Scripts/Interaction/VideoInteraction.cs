@@ -20,6 +20,8 @@ public class VideoInteraction : MonoBehaviour
         EventManager.OnSoundUpClickedEvent += IncreaseVideoSound;
         EventManager.OnSoundDownClickedEvent += DecreaseVideoSound;
         EventManager.OnSoundMuteClickedEvent += MuteVideoSound;
+        EventManager.OnVideoForwardClickedEvent += ForwardVideo;
+        EventManager.OnVideoBackwardClickedEvent += BackwardVideo;
     }
 
     void OnDisable()
@@ -29,6 +31,8 @@ public class VideoInteraction : MonoBehaviour
         EventManager.OnSoundUpClickedEvent -= IncreaseVideoSound;
         EventManager.OnSoundDownClickedEvent -= DecreaseVideoSound;
         EventManager.OnSoundMuteClickedEvent -= MuteVideoSound;
+        EventManager.OnVideoForwardClickedEvent -= ForwardVideo;
+        EventManager.OnVideoBackwardClickedEvent -= BackwardVideo;
     }
 
     void PlayVideo()
@@ -54,6 +58,16 @@ public class VideoInteraction : MonoBehaviour
     void MuteVideoSound()
     {
         videoPlayer.SetDirectAudioVolume(0, 0f);
+    }
+
+    void ForwardVideo()
+    {
+        videoPlayer.time += 5f;
+    }
+
+    void BackwardVideo()
+    {
+        videoPlayer.time -= 5f;
     }
 
 }

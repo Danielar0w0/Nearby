@@ -18,26 +18,6 @@ MonoBehaviour:
     m_Storage: []
   m_Images:
   - m_SerializedGuid:
-      m_GuidLow: 5439861004698255963
-      m_GuidHigh: 2259498764774227328
-    m_SerializedTextureGuid:
-      m_GuidLow: 8877842586092322385
-      m_GuidHigh: 11451149429185487339
-    m_Size: {x: 0.2, y: 0.2}
-    m_SpecifySize: 1
-    m_Name: CloudsQR
-    m_Texture: {fileID: 2800000, guid: 93de3e516ecb7b34eba1842cbca7ea9e, type: 3}
-  - m_SerializedGuid:
-      m_GuidLow: 5606870025833522903
-      m_GuidHigh: 10010529974533828521
-    m_SerializedTextureGuid:
-      m_GuidLow: 4938703209317953825
-      m_GuidHigh: 3325536008904666938
-    m_Size: {x: 0.2, y: 0.2}
-    m_SpecifySize: 1
-    m_Name: KidQR
-    m_Texture: {fileID: 2800000, guid: 0a7a7121cc6744893a6f887261ad262e, type: 3}
-  - m_SerializedGuid:
       m_GuidLow: 5395433520826716460
       m_GuidHigh: 7329877737058677915
     m_SerializedTextureGuid:
@@ -47,3 +27,33 @@ MonoBehaviour:
     m_SpecifySize: 1
     m_Name: Spot
     m_Texture: {fileID: 2800000, guid: 5a4720ccae9a6b748a2437f9ae821c4a, type: 3}
+  - m_SerializedGuid:
+      m_GuidLow: 4984607233805282397
+      m_GuidHigh: 13136843026870619009
+    m_SerializedTextureGuid:
+      m_GuidLow: 17610746792599059423
+      m_GuidHigh: 11457137951937635209
+    m_Size: {x: 0.1, y: 0.1}
+    m_SpecifySize: 1
+    m_Name: OculusRiftQR
+    m_Texture: {fileID: 0}
+  - m_SerializedGuid:
+      m_GuidLow: 5309609555793984623
+      m_GuidHigh: 15473766534845840562
+    m_SerializedTextureGuid:
+      m_GuidLow: 7269270671605364476
+      m_GuidHigh: 4066048958007075321
+    m_Size: {x: 0.1, y: 0.1}
+    m_SpecifySize: 1
+    m_Name: HTCVibeQR
+    m_Texture: {fileID: 0}
+  - m_SerializedGuid:
+      m_GuidLow: 4626342193407371952
+      m_GuidHigh: 7484808472839993276
+    m_SerializedTextureGuid:
+      m_GuidLow: 17626491244527100431
+      m_GuidHigh: 868853817657930521
+    m_Size: {x: 1, y: 1}
+    m_SpecifySize: 1
+    m_Name: SamsungQR
+    m_Texture: {fileID: 0}
