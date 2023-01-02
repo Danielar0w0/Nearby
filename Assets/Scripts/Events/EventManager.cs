@@ -29,6 +29,9 @@ public class EventManager : MonoBehaviour
     public delegate void VideoBackwardClicked();
     public static event VideoBackwardClicked OnVideoBackwardClickedEvent;
 
+    public delegate void MenuItemClicked();
+    public static event MenuItemClicked OnMenuItemClickedEvent;
+
     private void Awake()
     {
         current = this;
@@ -83,6 +86,12 @@ public class EventManager : MonoBehaviour
     {
         if (OnVideoBackwardClickedEvent != null)
             OnVideoBackwardClickedEvent();
+    }
+
+    public void OnMenuItemClicked()
+    {
+        if (OnMenuItemClickedEvent != null)
+            OnMenuItemClickedEvent();
     }
 
 }

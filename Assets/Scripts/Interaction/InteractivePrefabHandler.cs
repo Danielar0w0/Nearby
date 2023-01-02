@@ -50,7 +50,7 @@ public class InteractivePrefabHandler : MonoBehaviour
         prefabInstanceForImage.transform.position = trackedImage.transform.position;
         prefabInstanceForImage.transform.rotation = trackedImage.transform.rotation;
         prefabInstanceForImage.SetActive(true);
-
+           
     }
 
     public void HideInteractivePrefab(ARTrackedImage trackedImage)
@@ -96,7 +96,7 @@ public class InteractivePrefabHandler : MonoBehaviour
     {
 
         GameObject prefabInUse = instantiatedPrefabs[trackedImageName];
-        TextMeshPro textMesh = prefabInUse.GetComponentInChildren<TextMeshPro>();
+        TextMeshPro textMesh = prefabInUse.transform.Find("InteractiveText").GetComponentInChildren<TextMeshPro>();
         int trackedImageIdx = GetIndexByImageName(trackedImageName);
 
         if (trackedImageIdx == -1)

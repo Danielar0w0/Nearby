@@ -38,4 +38,9 @@ public class UIControls : MonoBehaviour
         EventManager.current.OnVideoBackwardClicked();
     }
 
+    public void onMenuClicked()
+    {
+        EventManager.current.OnMenuItemClicked();
+    }
+
 }
