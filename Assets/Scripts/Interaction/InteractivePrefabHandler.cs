@@ -25,15 +25,18 @@ public class InteractivePrefabHandler : MonoBehaviour
     // Prefabs created for each image. Each registered image had a prefab associated.
     private Dictionary<string, GameObject> instantiatedPrefabs = new Dictionary<string, GameObject>();
 
+    private bool tranformationToggleEnabled = true;
+
     private void Awake()
     {
 
         foreach (string trackedImageName in trackedImagesNames) {
             
             GameObject prefabInstance = Instantiate(interactivePrefab, Vector3.zero, Quaternion.identity);
-            prefabInstance.name = trackedImageName + "_Interactive";
+            prefabInstance.name = trackedImageName + "_View";
 
             instantiatedPrefabs.Add(trackedImageName, prefabInstance);
+            prefabInstance.SetActive(false);
         
         }
 
@@ -41,14 +44,35 @@ public class InteractivePrefabHandler : MonoBehaviour
 
     }
 
+    void OnEnable()
+    {
+        EventManager.OnTransformationToggleClickedEvent += HandleTranformationToggling;
+    }
+
+    void OnDisable()
+    {
+        EventManager.OnTransformationToggleClickedEvent -= HandleTranformationToggling;
+    }
+
+    public void SummonInteractivePrefab(ARTrackedImage trackedImage)
+    {
+        EventManager.current.OnTrackedImageInitiated();
+        CenterInteractivePrefab(trackedImage);
+    }
+
+
     public void CenterInteractivePrefab(ARTrackedImage trackedImage)
     {
 
         string trackedImageName = trackedImage.referenceImage.name;
         GameObject prefabInstanceForImage = instantiatedPrefabs[trackedImageName];
 
-        prefabInstanceForImage.transform.position = trackedImage.transform.position;
-        prefabInstanceForImage.transform.rotation = trackedImage.transform.rotation;
+        if (tranformationToggleEnabled)
+        {
+            prefabInstanceForImage.transform.position = trackedImage.transform.position;
+            prefabInstanceForImage.transform.rotation = trackedImage.transform.rotation;
+        }
+            
         prefabInstanceForImage.SetActive(true);
            
     }
@@ -185,6 +209,12 @@ public class InteractivePrefabHandler : MonoBehaviour
 
         }
 
+    }
+
+
+    private void HandleTranformationToggling()
+    {
+        tranformationToggleEnabled = !tranformationToggleEnabled;
     }
 
    /*

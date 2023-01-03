@@ -29,8 +29,14 @@ public class EventManager : MonoBehaviour
     public delegate void VideoBackwardClicked();
     public static event VideoBackwardClicked OnVideoBackwardClickedEvent;
 
+    public delegate void TransformationToggleClicked();
+    public static event TransformationToggleClicked OnTransformationToggleClickedEvent;
+
     public delegate void MenuItemClicked();
     public static event MenuItemClicked OnMenuItemClickedEvent;
+
+    public delegate void TrackedImageInitiated();
+    public static event TrackedImageInitiated OnTrackedImageInitiatedEvent;
 
     private void Awake()
     {
@@ -92,6 +98,18 @@ public class EventManager : MonoBehaviour
     {
         if (OnMenuItemClickedEvent != null)
             OnMenuItemClickedEvent();
+    }
+
+    public void OnTranformationToggleClicked()
+    {
+        if (OnTransformationToggleClickedEvent != null)
+            OnTransformationToggleClickedEvent();
+    }
+
+    public void OnTrackedImageInitiated()
+    {
+        if (OnTrackedImageInitiatedEvent != null)
+            OnTrackedImageInitiatedEvent();
     }
 
 }

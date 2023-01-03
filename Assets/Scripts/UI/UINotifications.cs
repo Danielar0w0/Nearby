@@ -19,6 +19,7 @@ public class UINotifications : MonoBehaviour
         EventManager.OnSoundUpClickedEvent += IncreaseVideoSound;
         EventManager.OnSoundDownClickedEvent += DecreaseVideoSound;
         EventManager.OnSoundMuteClickedEvent += MuteVideoSound;
+        EventManager.OnTransformationToggleClickedEvent += NotifyTransformationToggling;
     }
 
     void OnDisable()
@@ -29,6 +30,7 @@ public class UINotifications : MonoBehaviour
         EventManager.OnSoundUpClickedEvent -= IncreaseVideoSound;
         EventManager.OnSoundDownClickedEvent -= DecreaseVideoSound;
         EventManager.OnSoundMuteClickedEvent -= MuteVideoSound;
+        EventManager.OnTransformationToggleClickedEvent -= NotifyTransformationToggling;
     }
 
     void ShowSelectedModelNotification(GameObject selectedModel)
@@ -114,6 +116,18 @@ public class UINotifications : MonoBehaviour
         StartCoroutine(HideNotification(videoFeedbackPanel, 1));
     }
 
+    void NotifyTransformationToggling()
+    {
+        if (videoFeedbackPanel == null) return;
+
+        Text notificationText = videoFeedbackPanel.GetComponentInChildren<Text>();
+        notificationText.text = "Toggled Lock";
+
+        videoFeedbackPanel.SetActive(true);
+
+        StartCoroutine(FadeUtils.FadeInObject(videoFeedbackPanel));
+        StartCoroutine(HideNotification(videoFeedbackPanel, 1));
+    }
 
     private IEnumerator HideNotification(GameObject notification, int timeInSeconds)
     {

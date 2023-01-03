@@ -43,4 +43,9 @@ public class UIControls : MonoBehaviour
         EventManager.current.OnMenuItemClicked();
     }
 
+    public void onRotationLockToggleClicked()
+    {
+        EventManager.current.OnTranformationToggleClicked();
+    }
+
 }

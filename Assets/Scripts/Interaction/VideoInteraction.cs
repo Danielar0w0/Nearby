@@ -6,13 +6,6 @@ using UnityEngine.Video;
 public class VideoInteraction : MonoBehaviour
 {
 
-    private VideoPlayer videoPlayer;
-
-    void Awake()
-    {
-        videoPlayer = GetComponent<VideoPlayer>();
-    }
-
     void OnEnable()
     {
         EventManager.OnPlayClickedEvent += PlayVideo;
@@ -37,37 +30,51 @@ public class VideoInteraction : MonoBehaviour
 
     void PlayVideo()
     {
-        videoPlayer.Play();
+        GetCurrentVideoPlayer().Play();
     }
 
     void PauseVideo()
     {
-        videoPlayer.Pause();
+        GetCurrentVideoPlayer().Pause();
     }
 
     void IncreaseVideoSound()
     {
-        videoPlayer.SetDirectAudioVolume(0, videoPlayer.GetDirectAudioVolume(0)+0.1f);
+        GetCurrentVideoPlayer().SetDirectAudioVolume(0, GetCurrentVideoPlayer().GetDirectAudioVolume(0)+0.1f);
     }
 
     void DecreaseVideoSound()
     {
-        videoPlayer.SetDirectAudioVolume(0, videoPlayer.GetDirectAudioVolume(0) - 0.1f);
+        GetCurrentVideoPlayer().SetDirectAudioVolume(0, GetCurrentVideoPlayer().GetDirectAudioVolume(0) - 0.1f);
     }
 
     void MuteVideoSound()
     {
-        videoPlayer.SetDirectAudioVolume(0, 0f);
+        GetCurrentVideoPlayer().SetDirectAudioVolume(0, 0f);
     }
 
     void ForwardVideo()
     {
-        videoPlayer.time += 5f;
+        GetCurrentVideoPlayer().time += 5f;
     }
 
     void BackwardVideo()
     {
-        videoPlayer.time -= 5f;
+        GetCurrentVideoPlayer().time -= 5f;
+    }
+
+    private VideoPlayer GetCurrentVideoPlayer()
+    {
+        GameObject selectedModel = DataStore.getInstance().CurrentModel;
+        VideoPlayer videoPlayer;
+
+        if (selectedModel == null)
+            videoPlayer = GetComponent<VideoPlayer>();
+        else
+            videoPlayer = selectedModel.transform.Find("Video").transform.GetComponentInChildren<VideoPlayer>();
+
+        return videoPlayer;
+
     }
 
 }

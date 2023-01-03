@@ -36,7 +36,7 @@ public class ImageRecognition : MonoBehaviour
             }
             else
             {
-                GetInteractivePrefabHandler().CenterInteractivePrefab(trackedImage);
+                GetInteractivePrefabHandler().SummonInteractivePrefab(trackedImage);
             }
 
         }
