@@ -76,7 +76,7 @@ public class InteractiveModelHandler : MonoBehaviour
         storedInteractiveModelInstance.transform.parent = placeholderChildObject.transform.parent;
 
         // Set Scale relative to parent - relative to BoundingBox in this case 
-        storedInteractiveModelInstance.transform.localScale = new Vector3(imageMagnitude/2, imageMagnitude/2, imageMagnitude/2);
+        storedInteractiveModelInstance.transform.localScale = new Vector3(imageMagnitude*8, imageMagnitude*8, imageMagnitude*8);
 
         // Enable created objects
         storedInteractiveModelInstance.SetActive(true);
